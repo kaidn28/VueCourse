@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+        <link rel = "stylesheet" href = "style.css">
+    </head>
+    <body>
+        <div id = "app">
+            <template id = "get_start" v-if="!game_started">
+                <button @click= "gameStart"> Start </button>
+            </template>
+
+            <template id = "started" v-else>
+                <div class = "player">
+                    <h1> You</h1>
+                    <div class = "healthbar">
+                        <h2> {{ player_health }}</h2>
+                    </div>    
+                    <button @click="healthDown('monster')"> attack</button>
+                    <button @click = "healthUp('player')"> heal</button>
+                </div>
+                <div class = "player">
+                    <h1> Monster</h1>
+                    <div class = "healthbar">
+                        <h2> {{ monster_health > 0 ? monster_health: 'thua cmnr gà' }}</h2>
+                    </div>
+                    <button @click = "healthDown('player')" >attack</button>
+                    <button @click = "healthUp('monster')">heal</button>
+                </div>
+
+                <p v-if="game_over"> fuck you </p>                
+            </template>
+
+            
+        </div>
+        <script src = "vue.js"></script>
+        <script src = "script.js"></script>
+    </body>
+</html>
