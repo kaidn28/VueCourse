@@ -9,10 +9,9 @@ h1 {
 
 .player {
   display: inline-block;
-  width: 400px;
-  height: 300px;
+  width: 45%;
   background-color:blanchedalmond;
-  margin: 20px;
+  margin: auto;
   text-align: center;
   
 }
@@ -21,6 +20,37 @@ h1 {
   width: 300px;
   height: 30px;
   margin: auto;
-  background-color: green;
+  background-color: gray;
 
+}
+.currentHealth{
+  width: 80%;
+  height: 100%;
+  margin: auto;
+  margin-left: 0px;
+  background-color: green;
+  text-align: center;
+}
+
+.beforestart {
+  display: flex;
+  text-align: center;
+  align-items: center;
+}
+
+.p1turn {
+  margin: auto;
+  background-color: cyan;
+  color: white;
+  text-align: center
+}
+.p2turn {
+  margin: auto;
+  background-color: red;
+  color: white;
+  text-align: center;
+}
+
+ul {
+  list-style-type: none;
 }

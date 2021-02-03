@@ -8,32 +8,45 @@
     </head>
     <body>
         <div id = "app">
-            <template id = "get_start" v-if="!game_started">
-                <button @click= "gameStart"> Start </button>
-            </template>
-
-            <template id = "started" v-else>
-                <div class = "player">
-                    <h1> You</h1>
-                    <div class = "healthbar">
-                        <h2> {{ player_health }}</h2>
-                    </div>    
-                    <button @click="healthDown('monster')"> attack</button>
-                    <button @click = "healthUp('player')"> heal</button>
+            <div class = "player">
+                <h1> Player 1</h1>
+                <div class = "healthbar">
+                    <div class = "currentHealth" :style="{width: p1_health+'%'}">
+                        <h2> {{ p1_health }}</h2>
+                    </div>                    
                 </div>
-                <div class = "player">
-                    <h1> Monster</h1>
-                    <div class = "healthbar">
-                        <h2> {{ monster_health > 0 ? monster_health: 'thua cmnr gà' }}</h2>
+                <br>
+                <div class = "buttons" v-if="game_started">
+                    <button @click="healthDown('player2')"> attack</button>
+                    <button @click = "healthUp('player1')"> heal</button>
+                </div>
+                
+            </div>
+            <div class = "player">
+                <h1> Player 2</h1>
+                <div class = "healthbar">
+                    <div class = "currentHealth" :style="{width: p2_health+'%'}">
+                        <h2> {{ p2_health}}</h2>
                     </div>
-                    <button @click = "healthDown('player')" >attack</button>
-                    <button @click = "healthUp('monster')">heal</button>
                 </div>
-
-                <p v-if="game_over"> fuck you </p>                
+                <br>
+                <div class = "buttons" v-if="game_started">
+                    <button @click = "healthDown('player1')" >attack</button>
+                    <button @click = "healthUp('player2')">heal</button>
+                </div>
+            </div>
+            <hr>
+            <div id = "log" v-if="game_started">
+                <ul v-for="(turn,i) in turns">
+                    <li v-if="i<10" :class="{'p1turn':turn.isp1, 'p2turn':!turn.isp1}">
+                        {{turn.text}}
+                    </li>
+                </ul>
+            </div>
+            <template id = "beforestart" v-if="!game_started">
+                <button @click="gameStart"> Start</button>
             </template>
-
-            
+            <p v-if="game_over"> fuck you </p>                            
         </div>
         <script src = "vue.js"></script>
         <script src = "script.js"></script>
